@@ -100,16 +100,26 @@ a.boton_de_registro {
 	border-radius: 10px;
 }
 
-/*Footer*/
 
-footer {
-	text-align: center;
-	margin-top: 10px;
-	width: 710px;
-	margin-left: auto;
-	margin-right: auto;
+/*Página de usuarios */
+table.profile {
+	width: 100%;
+	margin-bottom: 0;
 }
 
-footer nav {
-	float: none;
+td.main {
+	width 70%;
+	padding: 1em;
+}
+
+td.sidebar {
+	width: 30%;
+	padding: 1em;
+	vertical-align: top;
+	background: #ffc;
+}
+
+.profile img.gravatar {
+	border: 1px solid #999;
+	margin-bottom: -15px;
 }
