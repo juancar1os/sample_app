@@ -4,8 +4,15 @@
 	<nav class="round">
 		<ul>
 			<li><%= link_to "Home", root_path %> </li>
+			<% if signed_in? %>
+				<li><%= link_to "Perfil", current_user %>
+			<% end %>
 			<li><%= link_to "Ayuda", ayuda_path %> </li>
-			<li><%= link_to "Registro", signin_path %> </li>
+			<% if signed_in? %>
+				<li><%= link_to "Cerrar sesion", signout_path, :method => :delete %>
+			<% else %>
+				<li><%= link_to "Iniciar sesión", signin_path %> </li>
+			<% end %>
 		</ul>
 	</nav>
 </header>
