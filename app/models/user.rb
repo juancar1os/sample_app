@@ -20,13 +20,13 @@ class User < ActiveRecord::Base
   validates :nombre,  :presence => true,
                       :length => { :maximum => 50 }
   validates :email, :presence => true,
-                    :format => { :with => email_regex },
+                    :format => { :with => email_regex, :message => "invalido" },
                     :uniqueness => { :case_sensitive => false}
                     
   #Crear el artribubto virtual para confirmar el password 'password_confirmation'
-  validates :password,  :presence =>true,
-                        :confirmation => true,
-                        :length => { :within => 6..40 }
+  validates :password,  :presence =>true, 
+                        :confirmation => true, 
+                        :length => { :within => 6..40, :message => "Tu password es muy corta (minimo 6 caracteres)" }
   
   #Crear el atributo para encriptar el password          
   before_save :encrypt_password
