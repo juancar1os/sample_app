@@ -4,4 +4,6 @@
   <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
   Creada por JC.
 </p>
-<%= link_to "Registrate aquí!", signin_path, :class => "boton_de_registro round"%>
+<% if !signed_in? %>
+<%= link_to "Registrate aquí!", signup_path, :class => "boton_de_registro round"%>
+<% end %>

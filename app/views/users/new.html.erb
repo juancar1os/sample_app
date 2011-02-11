@@ -1,6 +1,6 @@
 <h1>Registrate</h1>
 <%= form_for(@user) do |f| %>
-	<%= render 'shared/error_messages' %>
+	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
 		<%= f.label :nombre, %><br />
 		<%= f.text_field :nombre %>
@@ -21,3 +21,4 @@
 		<%= f.submit "Registro" %>
 	</div>
 <% end %>
+<p>Ya tienes una cuenta? <%= link_to "Inicia sesión!", signin_path %></p>

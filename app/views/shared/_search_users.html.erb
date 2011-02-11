@@ -1,0 +1,11 @@
+<div id="resultados">
+<ul class="users">
+	<% @users.each do |user| %>
+		<li>
+			<%= gravatar_for user, :size => 30 %>
+			<%= link_to user.nombre, user %>
+		</li>
+	<% end %>
+	<%= will_paginate @users, :class => 'pagination ajax'%>
+</ul>
+</div>
