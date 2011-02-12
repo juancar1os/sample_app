@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/rails/prototype_legacy_helper.git
+  revision: a2cd95c3e3c1a4f7a9566efdab5ce59c886cb05f
+  specs:
+    prototype_legacy_helper (0.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -101,6 +107,7 @@ DEPENDENCIES
   faker (= 0.3.1)
   gravatar_image_tag (= 1.0.0.pre2)
   mysql2
+  prototype_legacy_helper (= 0.0.0)!
   rails (= 3.0.3)
   rspec (= 2.3.0)
   rspec-rails (= 2.3.0)

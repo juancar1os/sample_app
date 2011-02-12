@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :nombre, :email, :password, :password_confirmation
   
+  #Un usuario puede tener muchos posts y al destruirse debe borrar sus posts
+  has_many :microposts, :dependent => :destroy
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :nombre,  :presence => true,
@@ -46,6 +49,11 @@ class User < ActiveRecord::Base
   def self.authenticate_with_salt(id, cookie_salt)
       user = find_by_id(id)
       (user && user.salt == cookie_salt) ? user : nil
+  end
+  
+  def feed
+    #consulta todos los post del usuario
+    Micropost.where("user_id = ?", id)
   end
   
   private

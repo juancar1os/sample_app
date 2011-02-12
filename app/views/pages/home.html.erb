@@ -1,9 +1,23 @@
-<h1>App de prueba</h1>
-<p>
-  Página de inicio para la aplicación de prueba del
-  <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-  Creada por JC.
-</p>
-<% if !signed_in? %>
-<%= link_to "Registrate aquí!", signup_path, :class => "boton_de_registro round"%>
+<% if signed_in? %>
+	<table class="front" summary="Página para usuarios registrados">
+		<tr>
+			<td class="main">
+				<h1 class="micropost">¿Qué onda?</h1>
+				<%= render 'shared/micropost_form' %>
+				<%= render 'shared/feed' %>
+			</td>
+			<td class="sidebar round">
+				<%= render 'shared/user_info' %>
+			</td>
+		</tr>
+	</table>
+<% else %>
+	<h1>App de prueba</h1>
+	<p>
+  		Página de inicio para la aplicación de prueba del
+  		<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
+  		Creada por JC.
+	</p>
+
+	<%= link_to "Registrate aquí!", signup_path, :class => "boton_de_registro round"%>
 <% end %>
