@@ -18,6 +18,19 @@ class User < ActiveRecord::Base
   #Un usuario puede tener muchos posts y al destruirse debe borrar sus posts
   has_many :microposts, :dependent => :destroy
   
+  #Definir las relaciones (:relationships) mediante "follower_id"
+  has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
+  
+  #un usuario tiene mucha gente a la que sigue, :source permite sobreescribir el plural de rails
+  has_many :following, :through => :relationships, :source => :followed
+  
+  #A un usuario lo puede seguir mucha gente (mediante relaciones inversas)
+   #Definicion de relaciones inversas (para que Rails no busque una clase ReverseRelationships)
+  has_many :reverse_relationships, :foreign_key => "followed_id",
+                                   :class_name => "Relationship",
+                                   :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :nombre,  :presence => true,
@@ -51,9 +64,24 @@ class User < ActiveRecord::Base
       (user && user.salt == cookie_salt) ? user : nil
   end
   
+  ##########Seguir y preguntar si se sigue
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+  
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id )
+  end
+  
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end
+  ##########
+  
   def feed
     #consulta todos los post del usuario
-    Micropost.where("user_id = ?", id)
+    #Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
   
   private
