@@ -2,7 +2,7 @@
 <%= form_for(@user) do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
-		<%= f.label :nombre, %><br />
+		<%= f.label :nombre %><br />
 		<%= f.text_field :nombre %>
 	</div>
 	<div class="field">

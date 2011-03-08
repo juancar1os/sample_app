@@ -13,7 +13,7 @@ development:
   pool: 5
   username: ruby
   password: ruby
-  socket: /tmp/mysql.sock
+  socket: /opt/lampp/var/mysql/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -34,6 +34,6 @@ production:
   reconnect: false
   database: sample_app_production
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  username: ruby
+  password: ruby
+  socket: /opt/lampp/var/mysql/mysql.sock
